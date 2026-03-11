@@ -9,11 +9,11 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-        stage('Deploy') {
-            steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://localhost:8088')], 
-                       war: 'target/*.war'
-            }
-        }
+       stage('Deploy') {
+    steps {
+        // Change the path to YOUR specific Tomcat installation directory
+        bat 'copy /Y target\\*.war "C:\\tomcat10\\webapps\\ROOT.war"'
+    }
+}
     } // This closes 'stages'
 } // This closes 'pipeline'
