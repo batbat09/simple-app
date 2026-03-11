@@ -1,15 +1,14 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven-3.9' // This name must match your Global Tool Config exactly
+        maven 'Maven-3.9' 
     }
     stages {
         stage('Build') {
             steps {
-                
-                bat 'mvn clean package -DskipTests'
+                // Now that your POM is fixed, remove -DskipTests
+                bat 'mvn clean package'
             }
         }
-  
     }
 }
