@@ -13,14 +13,12 @@ public class SimpleAppApplication {
         SpringApplication.run(SimpleAppApplication.class, args);
     }
 
-    // Add this to prevent the "Possibly already registered?" error
+    // REMOVE the public ErrorPageFilter errorPageFilter() method entirely.
+    
+    // Only keep this registration part:
     @Bean
-    public ErrorPageFilter errorPageFilter() {
-        return new ErrorPageFilter();
-    }
-
-    @Bean
-    public FilterRegistrationBean<ErrorPageFilter> disableSpringBootErrorFilter(ErrorPageFilter filter) {
+    public FilterRegistrationBean<ErrorPageFilter> disableSpringBootErrorFilter() {
+        ErrorPageFilter filter = new ErrorPageFilter();
         FilterRegistrationBean<ErrorPageFilter> filterRegistrationBean = new FilterRegistrationBean<>(filter);
         filterRegistrationBean.setEnabled(false);
         return filterRegistrationBean;
